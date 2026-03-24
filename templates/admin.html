@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="admin">
+    <h2>⚙️ Admin Dashboard</h2>
+
+    <div class="admin-section">
+        <h3>Add Product</h3>
+        <form method="POST" action="{{ url_for('admin.add_product') }}">
+            <input type="text" name="name" placeholder="Product Name" required>
+            <input type="number" name="price" placeholder="Price (₹)" required>
+            <input type="text" name="description" placeholder="Description">
+            <button type="submit" class="btn btn-primary">Add Product</button>
+        </form>
+    </div>
+
+    <div class="admin-section">
+        <h3>All Members</h3>
+        <table>
+            <thead>
+                <tr><th>Name</th><th>Email</th><th>Membership</th><th>Joined</th></tr>
+            </thead>
+            <tbody>
+                {% for user in users %}
+                    <tr>
+                        <td>{{ user.name }}</td>
+                        <td>{{ user.email }}</td>
+                        <td>{{ user.membership_type }}</td>
+                        <td>{{ user.joined_date }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <div class="admin-section">
+        <h3>Products</h3>
+        <table>
+            <thead>
+                <tr><th>Name</th><th>Price</th><th>Description</th><th>Action</th></tr>
+            </thead>
+            <tbody>
+                {% for product in products %}
+                    <tr>
+                        <td>{{ product.name }}</td>
+                        <td>₹{{ product.price }}</td>
+                        <td>{{ product.description }}</td>
+                        <td><a href="{{ url_for('admin.delete_product', product_id=product.id) }}" class="btn btn-danger">Delete</a></td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <div class="admin-section">
+        <h3>Recent Orders</h3>
+        <table>
+            <thead>
+                <tr><th>Member</th><th>Product</th><th>Date</th></tr>
+            </thead>
+            <tbody>
+                {% for order in orders %}
+                    <tr>
+                        <td>{{ order.name }}</td>
+                        <td>{{ order.product }}</td>
+                        <td>{{ order.order_date }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="hero">
+    <h1>Welcome to FitZone 💪</h1>
+    <p>Your journey to a stronger you starts here.</p>
+    <div class="hero-buttons">
+        <a href="{{ url_for('auth.signup') }}" class="btn btn-primary">Join Now</a>
+        <a href="{{ url_for('auth.login') }}" class="btn btn-outline">Login</a>
+    </div>
+</div>
+
+<div class="features">
+    <div class="feature-card">
+        <h3>🏋️ World Class Equipment</h3>
+        <p>Train with the best machines and free weights available.</p>
+    </div>
+    <div class="feature-card">
+        <h3>📅 Track Your Progress</h3>
+        <p>Log your gym visits and see your consistency grow.</p>
+    </div>
+    <div class="feature-card">
+        <h3>🛒 Gym Store</h3>
+        <p>Buy supplements, gear and accessories directly from us.</p>
+    </div>
+</div>
+
+{% endblock %}
